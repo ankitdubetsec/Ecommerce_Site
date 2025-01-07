@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify"; // Import Toast components
-import "react-toastify/dist/ReactToastify.css"; // Import Toast CSS
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import styles from "./SignupPage.module.css";
 
 const Signup = () => {
@@ -10,7 +10,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate(); // Initialize the navigate function
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,18 +25,15 @@ const Signup = () => {
         }
       );
 
-      // Show success toast notification
       toast.success(response.data.message || "User registered successfully!", {
         position: "top-right",
         autoClose: 2000, // 2 seconds
       });
 
-      // Navigate to the login page after a short delay
       setTimeout(() => {
         navigate("/login");
-      }, 2000); // Match toast duration
+      }, 2000);
     } catch (err) {
-      // Show error toast notification
       if (err.response) {
         toast.error(
           err.response.data.message || "Signup failed. Please try again.",
@@ -85,7 +82,6 @@ const Signup = () => {
       </div>
       <div className={styles.imageSection}></div>
 
-      {/* Toast Notification Container */}
       <ToastContainer />
     </div>
   );

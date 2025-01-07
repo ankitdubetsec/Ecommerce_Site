@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify"; // Import Toast components
-import "react-toastify/dist/ReactToastify.css"; // Import Toast CSS
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import styles from "./LoginPage.module.css";
 
 const Login = () => {
@@ -27,21 +27,18 @@ const Login = () => {
         localStorage.setItem("token", userData.token);
         console.log(userData.token);
 
-        // Show success toast notification
         toast.success("Login successful!", {
           position: "top-right",
-          autoClose: 2000, // 2 seconds
+          autoClose: 2000,
         });
 
-        // Navigate to the home page after a short delay
         setTimeout(() => {
           navigate("/home");
-        }, 2000); // Match toast duration
+        }, 2000);
       } else {
         console.log("User data and token not found");
       }
     } catch (err) {
-      // Handle error and show error toast notification
       if (err.response) {
         toast.error(
           err.response.data.message || "Login failed. Please try again.",

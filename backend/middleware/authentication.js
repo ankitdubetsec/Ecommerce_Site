@@ -2,6 +2,8 @@ const jwt = require("jsonwebtoken");
 const authError = require("../errors/unauthenticated");
 const auth = async (req, res, next) => {
   const authHeader = req.headers.authorization;
+  console.log("in auth middleware");
+  // console.log(token);
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     throw new authError("Authentication invalid");
   }
@@ -9,7 +11,8 @@ const auth = async (req, res, next) => {
 
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = { id: payload.id, name: payload.name, role: payload.role };
+    console.log(payload);
+    req.user = { id: payload.id, name: payload.name };
     next();
   } catch (error) {
     throw new authError("Authentication invalid");

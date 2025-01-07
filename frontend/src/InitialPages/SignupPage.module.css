@@ -37,7 +37,7 @@
   font-size: 14px; /* Smaller font size */
   border: 1px solid #ccc;
   border-radius: 5px;
-  width:70%;
+  width: 70%;
 }
 
 .formSection button {
@@ -48,7 +48,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width:70%;
+  width: 70%;
 }
 
 .formSection button:hover {
@@ -57,13 +57,13 @@
 
 .imageSection {
   flex: 1;
-  background: url('TempRef.jpg') no-repeat center center;
+  background: url("cart.png") no-repeat center center;
   background-size: cover;
 }
 
-.heading { /* Added new class for heading */
+.heading {
+  /* Added new class for heading */
   text-align: center; /* Center the heading text */
   margin-bottom: 20px;
   font-size: 24px;
 }
-

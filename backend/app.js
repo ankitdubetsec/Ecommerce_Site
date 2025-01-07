@@ -28,11 +28,13 @@ app.use(
 const Authentication = require("./middleware/authentication");
 //routers
 const authRouters = require("./routes/auth");
+const cartRouters = require("./routes/cart");
 app.use(express.json());
 //connect db
 const connectDb = require("./database/connect");
 //routes
 app.use("/api/v1/auth", authRouters);
+app.use("/api/v1/cart", cartRouters);
 
 app.use(errorHandler);
 

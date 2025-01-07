@@ -3,21 +3,18 @@ import styles from "./LandingPage.module.css";
 
 const LandingPage = () => {
   const navigateToLogin = () => {
-    window.location.href = "/login"; // Replace with your actual login page route
+    window.location.href = "/login";
   };
 
   const navigateToSignup = () => {
-    window.location.href = "/signup"; // Replace with your actual signup page route
+    window.location.href = "/signup";
   };
 
   return (
     <div className={styles.container}>
       {/* Left Side: Buttons */}
       <div className={styles.leftContainer}>
-        <h1 className={styles.title}>Welcome to PrepSaathi</h1>
-        <p className={styles.subtitle}>
-          Problem Solving and Performance Tracking Application.
-        </p>
+        <h1 className={styles.title}>Welcome to My Ecommerce platform</h1>
         <div className={styles.buttonContainer}>
           <button className={styles.button} onClick={navigateToLogin}>
             Login
