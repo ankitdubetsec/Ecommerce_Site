@@ -9,7 +9,7 @@ function Navbar({ cartCount = 0 }) {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          E-Shop
+          E-Commerce
         </Link>
         <ul className="navbar-menu">
           <li>

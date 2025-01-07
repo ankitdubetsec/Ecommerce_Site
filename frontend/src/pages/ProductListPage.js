@@ -21,19 +21,20 @@ const ProductListPage = () => {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [sortOption, setSortOption] = useState("");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        setLoading(true); // Start loading
+        setLoading(true);
         const response = await axios.get("https://fakestoreapi.com/products");
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
-        setLoading(false); // Stop loading
+        setLoading(false);
       }
     };
 
@@ -42,12 +43,20 @@ const ProductListPage = () => {
 
   const categories = [...new Set(products.map((product) => product.category))];
 
-  const filteredProducts = products.filter(
-    (product) =>
-      (selectedCategory === "" || product.category === selectedCategory) &&
-      (product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
+  const filteredProducts = products
+    .filter(
+      (product) =>
+        (selectedCategory === "" || product.category === selectedCategory) &&
+        (product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          product.description.toLowerCase().includes(searchQuery.toLowerCase()))
+    )
+    .sort((a, b) => {
+      if (sortOption === "priceLowToHigh") return a.price - b.price;
+      if (sortOption === "priceHighToLow") return b.price - a.price;
+      if (sortOption === "ratingHighToLow")
+        return b.rating.rate - a.rating.rate;
+      return 0;
+    });
 
   const onSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -55,6 +64,10 @@ const ProductListPage = () => {
 
   const onCategoryChange = (value) => {
     setSelectedCategory(value);
+  };
+
+  const onSortChange = (value) => {
+    setSortOption(value);
   };
 
   const viewDetails = (id) => {
@@ -87,7 +100,7 @@ const ProductListPage = () => {
         <Select
           placeholder="Filter by category"
           onChange={onCategoryChange}
-          style={{ width: "200px" }}
+          style={{ width: "200px", marginRight: "10px" }}
           allowClear
         >
           {categories.map((category) => (
@@ -95,6 +108,16 @@ const ProductListPage = () => {
               {category}
             </Option>
           ))}
+        </Select>
+        <Select
+          placeholder="Sort by"
+          onChange={onSortChange}
+          style={{ width: "200px" }}
+          allowClear
+        >
+          <Option value="priceLowToHigh">Price: Low to High</Option>
+          <Option value="priceHighToLow">Price: High to Low</Option>
+          <Option value="ratingHighToLow">Rating: High to Low</Option>
         </Select>
       </div>
       {loading ? (
@@ -115,7 +138,6 @@ const ProductListPage = () => {
                   overflow: "hidden",
                 }}
               >
-                {/* Ranking Badge */}
                 <div
                   style={{
                     position: "absolute",
@@ -131,7 +153,6 @@ const ProductListPage = () => {
                 >
                   #{index + 1}
                 </div>
-                {/* Product Image */}
                 <img
                   alt={product.title}
                   src={product.image}
@@ -142,7 +163,6 @@ const ProductListPage = () => {
                     marginBottom: "10px",
                   }}
                 />
-                {/* Product Title */}
                 <Title
                   level={5}
                   style={{
@@ -153,7 +173,6 @@ const ProductListPage = () => {
                 >
                   {product.title}
                 </Title>
-                {/* Rating */}
                 <div
                   style={{
                     display: "flex",
@@ -172,7 +191,6 @@ const ProductListPage = () => {
                     ({product.rating.count})
                   </span>
                 </div>
-                {/* Product Price */}
                 <p
                   style={{
                     fontSize: "16px",
@@ -183,7 +201,6 @@ const ProductListPage = () => {
                 >
                   ₹{product.price.toFixed(2)}
                 </p>
-                {/* View Details Button */}
                 <Button
                   type="primary"
                   size="small"
