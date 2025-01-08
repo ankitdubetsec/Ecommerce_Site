@@ -17,7 +17,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5500/api/users/signup",
+        "https://qed42-assignment-ecommerce-1.onrender.com/api/v1/auth/register",
         {
           name,
           email,

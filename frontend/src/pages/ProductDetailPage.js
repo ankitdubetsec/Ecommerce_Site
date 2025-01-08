@@ -52,7 +52,7 @@ const ProductDetailPage = () => {
 
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:5000/api/v1/cart/addToCart",
+        "https://qed42-assignment-ecommerce-1.onrender.com/api/v1/cart/addToCart",
         itemToAdd,
         {
           headers: {
