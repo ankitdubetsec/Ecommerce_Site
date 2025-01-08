@@ -8,8 +8,7 @@ const errorHandler = require("./middleware/errorHandler");
 const allowedOrigins = [
   "https://inquisitive-pastelito-e3b135.netlify.app",
   "http://localhost:3000",
-  "https://neon-kringle-c37282.netlify.app",
-  "http://localhost:3001",
+  "https://stalwart-gelato-d89e51.netlify.app/",
 ];
 
 app.use(
