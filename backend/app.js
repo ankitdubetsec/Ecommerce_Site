@@ -5,22 +5,9 @@ require("express-async-errors");
 require("dotenv").config();
 const cors = require("cors");
 const errorHandler = require("./middleware/errorHandler");
-const allowedOrigins = [
-  "https://inquisitive-pastelito-e3b135.netlify.app",
-  "http://localhost:3000",
-  "https://stalwart-gelato-d89e51.netlify.app/",
-];
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    allowedHeaders: ["Content-Type", "Authorization"],
+    origin: "*",
   })
 );
 
