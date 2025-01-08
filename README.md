@@ -1,4 +1,4 @@
-
+## Deployed Backend: https://qed42-assignment-ecommerce-1.onrender.com
 
 ```markdown
 # QED42_Assignment_Ecommerce
